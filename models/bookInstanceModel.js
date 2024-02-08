@@ -18,3 +18,4 @@ BookInstanceSchema.virtual("url").get(function () {
 });
 
 const BookInstance = mongoose.model("BookInstance", BookInstanceSchema);
+module.exports = BookInstance;

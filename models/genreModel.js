@@ -10,3 +10,4 @@ GenreSchema.virtual("url").get(function () {
 });
 
 const Genre = mongoose.model("Genre", GenreSchema);
+module.exports = Genre;
