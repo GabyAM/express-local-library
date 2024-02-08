@@ -3,7 +3,10 @@ const Schema = mongoose.Schema;
 
 const GenreSchema = new Schema({
 	name: String,
-	url: String,
+});
+
+GenreSchema.virtual("url").get(function () {
+	return `/catalog/genre/${this._id}`;
 });
 
 const Genre = mongoose.model("Genre", GenreSchema);

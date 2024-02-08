@@ -7,7 +7,10 @@ const BookSchema = new Schema({
 	summary: String,
 	ISBN: String,
 	genre: [{ type: Schema.Types.ObjectId, ref: "Genre" }],
-	url: String,
+});
+
+BookSchema.virtual("url").get(function () {
+	return `/catalog/book/${this._id}`;
 });
 
 const Book = mongoose.model("Book", BookSchema);
