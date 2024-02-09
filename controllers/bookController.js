@@ -1,4 +1,4 @@
-const Book = require("../models/book");
+const Book = require("../models/bookModel.js");
 const asyncHandler = require("express-async-handler");
 
 exports.index = asyncHandler(async (req, res, next) => {

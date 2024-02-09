@@ -1,4 +1,4 @@
-const Genre = require("../models/genre");
+const Genre = require("../models/genreModel.js");
 const asyncHandler = require("express-async-handler");
 
 // Display list of all Genre.
