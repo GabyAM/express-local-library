@@ -12,8 +12,7 @@ var app = express();
 
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", false);
-const mongoDB =
-	"mongodb+srv://admin:8vvuLkPvjLmMkkoo@cluster0.iyfpuwj.mongodb.net/local_library?retryWrites=true&w=majority";
+const mongoDB = process.env.MONGODB_URI;
 
 main().catch((err) => console.log(err));
 async function main() {
