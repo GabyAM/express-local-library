@@ -164,7 +164,6 @@ exports.book_delete_get = asyncHandler(async (req, res, next) => {
 		BookInstance.find({ book: req.params.id }, "imprint status").exec(),
 	]);
 
-	console.log(bookInstances);
 	if (book === null) {
 		// No results.
 		res.redirect("/catalog/books");
