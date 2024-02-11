@@ -150,10 +150,8 @@ exports.author_update_post = [
 	body("date_of_death").optional({ values: "falsy" }).isISO8601().toDate(),
 
 	asyncHandler(async (req, res, next) => {
-		// Extract the validation errors from a request.
 		const errors = validationResult(req);
 
-		// Create Author object with escaped and trimmed data
 		const author = new Author({
 			first_name: req.body.first_name,
 			family_name: req.body.family_name,
@@ -163,7 +161,6 @@ exports.author_update_post = [
 		});
 
 		if (!errors.isEmpty()) {
-			// There are errors. Render form again with sanitized values/errors messages.
 			res.render("author_form", {
 				title: "Create Author",
 				author: author,
@@ -171,8 +168,6 @@ exports.author_update_post = [
 			});
 			return;
 		} else {
-			// Data from form is valid.
-
 			const updatedAuthor = await Author.findByIdAndUpdate(
 				req.params.id,
 				author,

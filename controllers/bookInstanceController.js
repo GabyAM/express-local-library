@@ -137,7 +137,6 @@ exports.bookinstance_update_get = asyncHandler(async (req, res, next) => {
 
 // Handle bookinstance update on POST.
 exports.bookinstance_update_post = [
-	// Validate and sanitize fields.
 	body("book", "Book must be specified").trim().isLength({ min: 1 }).escape(),
 	body("imprint", "Imprint must be specified")
 		.trim()
@@ -149,12 +148,9 @@ exports.bookinstance_update_post = [
 		.isISO8601()
 		.toDate(),
 
-	// Process request after validation and sanitization.
 	asyncHandler(async (req, res, next) => {
-		// Extract the validation errors from a request.
 		const errors = validationResult(req);
 
-		// Create a BookInstance object with escaped and trimmed data.
 		const bookInstance = new BookInstance({
 			book: req.body.book,
 			imprint: req.body.imprint,
@@ -164,8 +160,6 @@ exports.bookinstance_update_post = [
 		});
 
 		if (!errors.isEmpty()) {
-			// There are errors.
-			// Render form again with sanitized values and error messages.
 			const allBooks = await Book.find({}, "title")
 				.sort({ title: 1 })
 				.exec();
@@ -179,7 +173,6 @@ exports.bookinstance_update_post = [
 			});
 			return;
 		} else {
-			// Data from form is valid
 			const updatedBookInstance = await BookInstance.findByIdAndUpdate(
 				req.params.id,
 				bookInstance,
