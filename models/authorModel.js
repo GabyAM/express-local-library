@@ -18,21 +18,22 @@ AuthorSchema.virtual("name").get(function () {
 });
 
 AuthorSchema.virtual("lifespan").get(function () {
-	if (!(this.date_of_birth && this.date_of_death)) {
-		return "Unknown";
+	const defaultText = "Unknown date";
+	if (!(this.date_of_birth || this.date_of_death)) {
+		return defaultText;
 	}
 
 	let formattedBirthDate = this.date_of_birth
 		? DateTime.fromJSDate(this.date_of_birth).toLocaleString(
 				DateTime.DATE_MED
 		  )
-		: "Unknown";
+		: defaultText;
 
 	let formattedDeathDate = this.date_of_death
 		? DateTime.fromJSDate(this.date_of_death).toLocaleString(
 				DateTime.DATE_MED
 		  )
-		: "Unknown";
+		: defaultText;
 	return formattedBirthDate + " - " + formattedDeathDate;
 });
 
